@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Nithu Seervi T | Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
+
+body{
+    background:#fff0f6;
+    overflow-x:hidden;
+    color:#333;
+}
+
+/* ===== BACKGROUND ===== */
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;left:0;
+    z-index:-2;
+    overflow:hidden;
+}
+.bubble{
+    position:absolute;
+    border-radius:50%;
+    background:rgba(255,79,129,0.25);
+    animation:floatUp linear infinite;
+}
+.glow{
+    position:absolute;
+    width:300px;
+    height:300px;
+    background:rgba(255,79,129,0.2);
+    filter:blur(80px);
+    border-radius:50%;
+    animation:moveGlow 12s infinite alternate;
+}
+@keyframes moveGlow{
+    from{transform:translate(0,0);}
+    to{transform:translate(200px,-150px);}
+}
+@keyframes floatUp{
+    from{transform:translateY(100vh) scale(0);opacity:0;}
+    to{transform:translateY(-20vh) scale(1);opacity:1;}
+}
+
+/* NAV */
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    background:white;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    display:flex;
+    justify-content:center;
+    padding:14px;
+    z-index:1000;
+}
+nav a{
+    margin:0 15px;
+    text-decoration:none;
+    color:#ff4f81;
+    font-weight:600;
+    transition:.3s;
+}
+nav a:hover{color:#222;}
+
+section{
+    padding:70px 10%;
+    min-height:auto;
+}
+
+/* HERO */
+.hero{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:center;
+    justify-content:center;
+    gap:35px;
+}
+.hero img{
+    width:260px;
+    border-radius:50%;
+    border:6px solid #ff4f81;
+    animation:float 3s ease-in-out infinite;
+}
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-12px);}
+}
+.hero-text h1{
+    font-size:42px;
+    color:#ff4f81;
+}
+.hero-text p{font-size:18px;margin-top:8px}
+
+/* TITLES ANIMATION */
+h2{
+    text-align:center;
+    color:#ff4f81;
+    margin-bottom:25px;
+    font-size:30px;
+    animation:titleFade 1s ease;
+}
+@keyframes titleFade{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+/* ABOUT */
+.about{text-align:center;line-height:1.8;}
+
+/* SKILLS */
+.skills-container{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:15px;
+}
+.skill{
+    background:white;
+    padding:12px 22px;
+    border-radius:25px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+    transition:.3s;
+}
+.skill:hover{transform:scale(1.08);}
+
+/* CERT */
+.cert-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:18px;
+}
+.cert{
+    background:white;
+    padding:10px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,.1);
+    cursor:pointer;
+    transition:.3s;
+}
+.cert:hover{transform:translateY(-8px);}
+.cert img{width:100%;border-radius:10px;}
+.cert p{text-align:center;margin-top:8px;font-weight:600;}
+
+.popup{
+display:none;
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,.75);
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+.popup img{width:85%;max-width:700px;border-radius:12px;}
+.popup span{
+position:absolute;
+top:20px;right:30px;
+color:white;font-size:40px;cursor:pointer;
+}
+
+/* CONTACT */
+.contact-icons{
+display:flex;
+justify-content:center;
+gap:30px;
+}
+.contact-icons a{
+font-size:34px;
+color:#ff4f81;
+transition:.3s;
+}
+.contact-icons a:hover{
+transform:scale(1.2) rotate(8deg);
+}
+
+/* FEEDBACK (NEW DESIGN) */
+.feedback-form{
+max-width:520px;
+margin:auto;
+background:white;
+padding:25px;
+border-radius:18px;
+box-shadow:0 8px 20px rgba(0,0,0,.1);
+animation:titleFade 1s;
+}
+.feedback-form input,
+.feedback-form textarea{
+width:100%;
+margin:10px 0;
+padding:12px;
+border:2px solid #ffd1df;
+border-radius:10px;
+outline:none;
+transition:.3s;
+}
+.feedback-form input:focus,
+.feedback-form textarea:focus{
+border-color:#ff4f81;
+}
+.feedback-form button{
+background:#ff4f81;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:25px;
+cursor:pointer;
+transition:.3s;
+}
+.feedback-form button:hover{
+background:#e63b6d;
+transform:scale(1.05);
+}
+.feedback-status{text-align:center;margin-top:10px;font-weight:600;}
+
+footer{
+text-align:center;
+padding:18px;
+background:#ff4f81;
+color:white;
+margin-top:30px;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+.hero-text h1{font-size:30px;}
+.hero img{width:190px;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="background" id="bg">
+<div class="glow" style="top:10%;left:5%;"></div>
+<div class="glow" style="bottom:10%;right:5%;"></div>
+</div>
+
+<nav>
+<div class="logo">Nithu's Portfolio</div>
+
+<div class="nav-links">
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#skills">Skills</a>
+<a href="#cert">Certification</a>
+<a href="#contact">Contact</a>
+</div>
+</nav>
+
+<section id="home">
+<div class="hero">
+<img src="Nithu.jpeg" alt="">
+<div class="hero-text">
+<h1>Nithu Seervi T</h1>
+<p>Creative Developer ✨ | Dreamer 💖 | Tech Enthusiast</p>
+</div>
+</div>
+</section>
+
+<section id="about">
+<h2>About Me</h2>
+<div class="about">
+<p>I am Nithu Seervi, originally from Rajasthan and brought up in Bengaluru, currently pursuing BCA in Cloud Computing at Kristu Jayanti University. I am passionate about building a career in the technology field, with a strong interest in web development and cloud computing. I enjoy learning new technical skills and exploring how modern websites and applications are designed.
+
+Apart from academics, I am an extrovert who enjoys meeting new people and working in collaborative environments. I am also a foodie and love cooking, which reflects my creativity and attention to detail. This portfolio website is my college project, created to showcase my profile, technical skills, and certifications while gaining practical experience in web development using HTML, CSS, and JavaScript. I aim to continue learning and building projects that strengthen my skills for a successful career in the IT industry.</p>
+</div>
+</section>
+
+<section id="skills">
+<h2>Skills</h2>
+<div class="skills-container">
+<div class="skill">HTML</div>
+<div class="skill">CSS</div>
+<div class="skill">JavaScript</div>
+<div class="skill">UI Design</div>
+<div class="skill">Responsive Design</div>
+</div>
+</section>
+
+<section id="cert">
+<h2>Certifications</h2>
+<div class="cert-grid">
+<div class="cert" onclick="openPopup(this)">
+<img src="AWS.png"><p>AWS Certificate</p></div>
+<div class="cert" onclick="openPopup(this)">
+<img src="CSS3.png"><p>CSS3</p></div>
+<div class="cert" onclick="openPopup(this)">
+<img src="Digital Engineering.png"><p>Digital Engineering</p></div>
+</div>
+</section>
+
+<div class="popup" id="popup">
+<span onclick="closePopup()">&times;</span>
+<img id="popup-img">
+</div>
+
+<section id="contact">
+<h2>Get In Touch</h2>
+<div class="contact-icons">
+<a href="https://github.com/NIthuseerviT" target="_blank"><i class="fab fa-github"></i></a>
+<a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+<a href="mailto:25bcla42@kristujayanti.com"><i class="fas fa-envelope"></i></a>
+</div>
+</section>
+
+<h2>Feedback</h2>
+
+<form class="feedback-form" id="feedbackForm">
+
+<input type="text" id="name" placeholder="Your Name" required>
+
+<input type="email" id="email" placeholder="Your Email" required>
+
+<textarea rows="4" id="message" placeholder="Your Feedback" required></textarea>
+
+<button type="submit">Submit Feedback</button>
+
+</form>
+
+<div id="status"></div>
+
+</section>
+
+<footer>
+© 2026 Nithu Seervi Portfolio
+</footer>
+
+<script>
+
+/* POPUP */
+
+function openPopup(el){
+document.getElementById("popup").style.display="flex";
+document.getElementById("popup-img").src=el.querySelector("img").src;
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+/* BUBBLES */
+
+const bg=document.getElementById("bg");
+
+for(let i=0;i<30;i++){
+
+let b=document.createElement("div");
+
+b.className="bubble";
+
+let s=Math.random()*60+20;
+
+b.style.width=s+"px";
+b.style.height=s+"px";
+b.style.left=Math.random()*100+"%";
+b.style.animationDuration=(Math.random()*10+8)+"s";
+
+bg.appendChild(b);
+
+}
+
+</script>
+
+
+<!-- FIREBASE -->
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+
+import { 
+getFirestore,
+collection,
+addDoc
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+
+apiKey: "AIzaSyAIgGLj_RgUT-qosCHdRkWtpiKp2Dl88Gc",
+authDomain: "nithu-portfolio-cba83.firebaseapp.com",
+projectId: "nithu-portfolio-cba83",
+storageBucket: "nithu-portfolio-cba83.firebasestorage.app",
+messagingSenderId: "796478951787",
+appId: "1:796478951787:web:43a818499784b6f184bc2e"
+
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+document.getElementById("feedbackForm").addEventListener("submit", async (e)=>{
+
+e.preventDefault();
+
+const name=document.getElementById("name").value;
+const email=document.getElementById("email").value;
+const message=document.getElementById("message").value;
+const status=document.getElementById("status");
+
+status.innerText="Submitting...";
+
+try{
+
+await addDoc(collection(db,"feedbacks"),{
+
+name:name,
+email:email,
+message:message,
+date:new Date()
+
+});
+
+status.innerText="✅ Feedback submitted!";
+document.getElementById("feedbackForm").reset();
+
+}
+
+catch(err){
+
+status.innerText="❌ Error submitting feedback";
+console.error(err);
+
+}
+
+});
+
+</script>
+
+</body>
+</html>
