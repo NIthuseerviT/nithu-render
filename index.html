@@ -314,23 +314,60 @@ Apart from academics, I am an extrovert who enjoys meeting new people and workin
 </div>
 </section>
 
-<h2>Feedback</h2>
+<!-- FEEDBACK -->
+<section id="feedback">
+<div class="container card">
+<h2 class="section-title">Feedback</h2>
 
 <form class="feedback-form" id="feedbackForm">
-
 <input type="text" id="name" placeholder="Your Name" required>
-
 <input type="email" id="email" placeholder="Your Email" required>
-
 <textarea rows="4" id="message" placeholder="Your Feedback" required></textarea>
-
 <button type="submit">Submit Feedback</button>
-
 </form>
 
-<div id="status"></div>
-
+<div class="feedback-status" id="status"></div>
+</div>
 </section>
+
+<footer style="text-align:center;padding:20px;color:var(--muted)">
+
+</footer>
+
+<script>
+/* 🔗 SUPABASE CONFIG */
+const supabaseUrl = "https://wvhzpiiotjyfikeuyveq.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Ind2aHpwaWlvdGp5ZmlrZXV5dmVxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE4MzIwODcsImV4cCI6MjA4NzQwODA4N30.PXyAEIbSmXJ9cDeQiu6xuow5CLU6Xu1OUFcwA-els6E";
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+/* 📨 FEEDBACK SUBMIT */
+document.getElementById("feedbackForm").addEventListener("submit", async (e) => {
+e.preventDefault();
+
+const status = document.getElementById("status");
+status.innerText = "Submitting...";
+
+const name = document.getElementById("name").value;
+const email = document.getElementById("email").value;
+const message = document.getElementById("message").value;
+
+const { error } = await supabaseClient
+.from("feedbacks")
+.insert([{ name, email, message }]);
+
+if (error) {
+status.innerText = "❌ Error submitting feedback";
+status.style.color = "red";
+} else {
+status.innerText = "✅ Feedback submitted successfully!";
+status.style.color = "#00d4ff";
+e.target.reset();
+}});
+</script>
+
+</body>
+</html>
 
 <footer>
 © 2026 Nithu Seervi Portfolio
@@ -369,71 +406,6 @@ b.style.animationDuration=(Math.random()*10+8)+"s";
 bg.appendChild(b);
 
 }
-
-</script>
-
-
-<!-- FIREBASE -->
-
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-
-import { 
-getFirestore,
-collection,
-addDoc
-} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey: "AIzaSyAIgGLj_RgUT-qosCHdRkWtpiKp2Dl88Gc",
-authDomain: "nithu-portfolio-cba83.firebaseapp.com",
-projectId: "nithu-portfolio-cba83",
-storageBucket: "nithu-portfolio-cba83.firebasestorage.app",
-messagingSenderId: "796478951787",
-appId: "1:796478951787:web:43a818499784b6f184bc2e"
-
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-document.getElementById("feedbackForm").addEventListener("submit", async (e)=>{
-
-e.preventDefault();
-
-const name=document.getElementById("name").value;
-const email=document.getElementById("email").value;
-const message=document.getElementById("message").value;
-const status=document.getElementById("status");
-
-status.innerText="Submitting...";
-
-try{
-
-await addDoc(collection(db,"feedbacks"),{
-
-name:name,
-email:email,
-message:message,
-date:new Date()
-
-});
-
-status.innerText="✅ Feedback submitted!";
-document.getElementById("feedbackForm").reset();
-
-}
-
-catch(err){
-
-status.innerText="❌ Error submitting feedback";
-console.error(err);
-
-}
-
-});
 
 </script>
 
